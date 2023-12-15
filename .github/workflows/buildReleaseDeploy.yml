@@ -29,9 +29,9 @@ jobs:
         run: |
           mkdir -v dist
           npm run build
-          sed -i "s/dev3000/eventInfo/" dist/settings.js
-          sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/settings.js
-          sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/settings.js
+          sed -i "s/dev3000/eventInfo/" dist/config.js
+          sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/config.js
+          sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/config.js
           
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
