@@ -1,0 +1,11 @@
+window.eventInformation = window.eventInformation || {};
+window.eventInformation.settings = {
+
+    //OAuth Url Evento
+    authUrl: "https://evento.ch/OAuth",
+    // Rest API Url Evento
+    restUrl: "https://evento.ch/restApi",
+    //ClientId form Public Consumer
+    clientId: "dev3000",
+
+};

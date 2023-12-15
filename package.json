@@ -1,0 +1,21 @@
+{
+  "name": "eventinfosite",
+  "version": "1.0.0",
+  "description": "Display events from evento api to add this to entrance of a buildung or of a room.",
+  "main": "eventinfosite",
+  "scripts": {
+    "Install": "npm install",
+    "lintjs": "eslint ./*.js",
+    "startdev": "light-server -b localhost -s . -p 3000",
+    "build": "cp README.md dist/ && cp LICENSE dist/ && cp settings.js.example dist/settings.js && minify app.js > dist/app.js && minify app.css > dist/app.css && minify index.html > dist/index.html"
+  },
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "light-server": "^2.1.9"
+  },
+  "author": "bkd-mba-fbi",
+  "license": "MIT",
+  "dependencies": {
+    "minify": "^11.0.1"
+  }
+}
