@@ -3,7 +3,7 @@ var settings = window.eventInformation.settings;
 // browser-language
 let navigatorLanguage = navigator.language.split('-')[0] === 'fr' ? 'fr-CH' : 'de-CH';
 
-//manditory param
+//mandatory param
 var buildingId = getParameterByName('buildingId');
 var instanceId = getParameterByName('instance');
 var roomId = getParameterByName('roomId');
