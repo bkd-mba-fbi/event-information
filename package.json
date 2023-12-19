@@ -6,7 +6,7 @@
   "scripts": {
     "Install": "npm install",
     "lintjs": "eslint ./*.js",
-    "startdev": "light-server -b localhost -s . -p 3000",
+    "dev": "light-server -b localhost -s . -p 3000",
     "build": "cp README.md dist/ && cp LICENSE dist/ && cp settings.js.example dist/settings.js && cp app.js dist/ && minify app.css > dist/app.css && minify index.html > dist/index.html"
   },
   "devDependencies": {
