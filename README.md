@@ -5,7 +5,7 @@ Display events from evento api to add this to entrance of a buildung or of a roo
 
 # Parameter
 
-mandatory parameters are buildingId or roomId and instanceId
+mandatory parameters are `buildingId` or `roomId` and `instanceId`
 
 ## Options
 - refresh: to get new occupancies from restApi in min (default 1min)
