@@ -1,0 +1,32 @@
+{
+    "js": {
+        "mangle": false,
+        "mangleClassNames": false,
+        "removeUnusedVariables": true,
+        "removeConsole": true,
+        "removeUselessSpread": false
+    },
+    "img": {
+        "maxSize": 4096
+    },
+    "html": {
+        "removeComments": true,
+        "removeCommentsFromCDATA": true,
+        "removeCDATASectionsFromCDATA": true,
+        "collapseWhitespace": true,
+        "collapseBooleanAttributes": true,
+        "removeAttributeQuotes": true,
+        "removeRedundantAttributes": true,
+        "useShortDoctype": true,
+        "removeEmptyAttributes": true,
+        "removeEmptyElements": false,
+        "removeOptionalTags": true,
+        "removeScriptTypeAttributes": true,
+        "removeStyleLinkTypeAttributes": true,
+        "minifyJS": true,
+        "minifyCSS": true
+    },
+    "css": {
+        "compatibility": "*"
+    }
+}
