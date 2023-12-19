@@ -34,7 +34,7 @@ npm run dev
 ```
 ## Responsive Design
 
-font-size and padding are calculatet bei screensize.
+font-size and padding are calculated by screen size.
 ```
 font-size: calc(1.3rem + 1.1vw)
 padding: calc(0.1rem + 2vw);
