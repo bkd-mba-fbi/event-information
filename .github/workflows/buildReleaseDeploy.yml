@@ -40,6 +40,7 @@ jobs:
           folder: dist
           target-folder: dist
 
+        ## Create Release
       - name: Create Release  
         id: release
         uses: CupOfTea696/gh-action-auto-release@v1.0.0
