@@ -130,7 +130,7 @@ function autoCheckForLogin() {
 function scroll() {
   siteChange = siteChange > 0 ? siteChange * 1000 : 3500;
   setInterval(() => {
-    scrollPosition = document.getElementById('events').getBoundingClientRect().height <= scrollPosition ? 0 : (scrollPosition + screen.availHeight) - document.getElementById('header').getBoundingClientRect().height;
+    scrollPosition = document.getElementById('events').getBoundingClientRect().height <= scrollPosition ? 0 : (scrollPosition + screen.availHeight) - (document.getElementById('header').getBoundingClientRect().height + 300);
     window.scrollTo(0, scrollPosition);
   }, siteChange);
 
