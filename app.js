@@ -194,7 +194,7 @@ function getRoomReservation() {
           var designation = row.insertCell(1);
           designation.innerHTML = element.Designation;
           designation.classList.add('large');
-          if (rooms.length > 1) {
+          if (rooms.length >= 1) {
             var floor = row.insertCell(2);
             floor.classList.add('small');
             floor.innerHTML = roomsFiltered[0].Floor;
