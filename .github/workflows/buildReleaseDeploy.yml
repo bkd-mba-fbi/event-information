@@ -29,7 +29,6 @@ jobs:
         run: |
           mkdir -v dist
           npm run build
-          cd dist && zip --recurse-paths event-information.zip *
           sed -i "s/dev3000/eventInfo/" dist/settings.js
           sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/settings.js
           sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/settings.js
@@ -39,7 +38,6 @@ jobs:
         with:
           folder: dist
           target-folder: dist
-
 
       - name: Set short git commit SHA
         id: vars
@@ -58,6 +56,10 @@ jobs:
           release_name: V${{ github.event.head_commit.message }}
           draft: false
           prerelease: false
+
+      - name: Build zip 
+        run: |
+            cd dist && zip --recurse-paths event-information.zip *
 
       - name: Upload Release Asset
         id: upload-release-asset 
