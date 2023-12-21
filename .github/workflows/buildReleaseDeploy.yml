@@ -29,10 +29,10 @@ jobs:
         run: |
           mkdir -v dist
           npm run build
+          cd dist && zip --recurse-paths event-information.zip *
           sed -i "s/dev3000/eventInfo/" dist/settings.js
           sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/settings.js
           sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/settings.js
-          cd dist && zip --recurse-paths event-information.zip *
           
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
@@ -55,7 +55,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
           tag_name: ${{ github.event.head_commit.message }}
-          release_name: Version${{ github.event.head_commit.message }}.${{ env.COMMIT_SHORT_SHA }}
+          release_name: V${{ github.event.head_commit.message }}
           draft: false
           prerelease: false
 
