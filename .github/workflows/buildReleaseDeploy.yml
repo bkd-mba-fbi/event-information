@@ -40,6 +40,13 @@ jobs:
           folder: dist
           target-folder: dist
 
+
+      - name: Set short git commit SHA
+        id: vars
+        run: |
+            calculatedSha=$(git rev-parse --short ${{ github.sha }})
+            echo "COMMIT_SHORT_SHA=$calculatedSha" >> $GITHUB_ENV
+
         ## Create Release
       - name: Create Release  
         id: release
@@ -47,8 +54,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
-          tag_name: ${{ github.sha }}
-          release_name: Version ${{ github.sha }}
+          tag_name: ${{ steps.vars.outputs.short_sha }}
+          release_name: Version ${{ steps.vars.outputs.short_sha }}
           draft: false
           prerelease: false
 
