@@ -53,6 +53,19 @@ Table rows:
 - `Occupancies.DateTimeFrom - Occupancies.DateTimeFrom` (format hh:mm)
 - `Occupancies.Designation`
 
+# Branching & Releasing
+
+For development use the dev branch and commit your changes to this. We review all changes on the dev branch an made a pull request to main after everything ist good or we find a new release must be create.
+
+Action on main branch
+
+1. Build app 
+2. change settings propertys for production
+3. create zip file
+4. Deploy app ti gh_pages/dist folder 
+5. Create Release with tag COMMIT_SHORT_SHA 
+6. Upload zip file to Release
+
 # Setup & Development
 
 ## Getting Started
