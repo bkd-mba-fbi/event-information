@@ -7,7 +7,9 @@ Display events from evento api to add this to entrance of a buildung or of a roo
 
 This module can be used to display buildings. For example, building entrances to display events in this building. It is possible to set a parameter using the event color (Evento tab lesson) so that only these events are displayed. It is also possible to create a room display if the roomId parameter is called in the URL.
 
-If you are an Evento school of the Canton of Bern, you can use the module directly via the URL https://event-information.netlify.app. If not, you can download the latest release and install it on any web server. You must then configure the 3 properties in settings.js. In Evento OAuth you have to create a Public ConsumerType that has access to the Scope `Public` with the endpoint `GET /RoomReservation` on the `EndpointList`.
+If you are an Evento school of the Canton of Bern, you can use the module directly via the URL https://event-information.netlify.app. 
+
+If not, you can download the [latest release](https://github.com/bkd-mba-fbi/event-information/releases) and install it on any web server. You must then configure the 3 properties in settings.js. In Evento OAuth you have to create a Public ConsumerType that has access to the Scope `Public` with the endpoint `GET /RoomReservation` on the `EndpointList`.
 
 ## Parameter
 
@@ -52,6 +54,19 @@ Header: `Rooms.Ressource Rooms.Building`
 Table rows:
 - `Occupancies.DateTimeFrom - Occupancies.DateTimeFrom` (format hh:mm)
 - `Occupancies.Designation`
+
+# Branching & Releasing
+
+For development use the dev branch and commit your changes to this. We review all changes on the dev branch an made a pull request to main after everything ist good or we find a new release must be create.
+
+Action on main branch
+
+1. Build app 
+2. change settings propertys for production
+3. create zip file
+4. Deploy app ti gh_pages/dist folder 
+5. Create Release with tag COMMIT_SHORT_SHA 
+6. Upload zip file to Release
 
 # Setup & Development
 
