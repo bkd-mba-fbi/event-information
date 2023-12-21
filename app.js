@@ -155,7 +155,18 @@ async function getData(url) {
 }
 
 /**
- * 
+ * 1. autoCheckForLogin()
+ * 2. set vars now Date, from now - 5 min, to 23:xx
+ * 3. get data /RoomReservation/Rooms/Occupancies/?filter.DateTimeFrom=${from}&filter.DateTimeTo=${to}&sort=DateTimeFrom.asc
+ * 4. remove rows in events table
+ * 5. set param color to filter it
+ * 6. Filter Occupancies rooms param buildingId or roomId
+ * 7. if fiteredrooms exists
+ * 8. insert row for every filterroom Occupancies
+ * 9. insert column from - to
+ * 10. insert column Designation
+ * 11. if param roomId null set column floor and Ressource(roomName)
+ * 12. set marginTop to events table because of header height
  */
 function getRoomReservation() {
 
@@ -173,7 +184,6 @@ function getRoomReservation() {
 
       //Remove every row
       document.querySelectorAll('tr').forEach((tr) => {
-        console.log()
         tr.remove();
       });
 
@@ -237,13 +247,15 @@ if ((buildingId === null || roomId === null) && instanceId === null) {
 
       const header = document.getElementById('header');
       header.style.backgroundColor = '#' + headerColor;
+      const headerh1 = document.getElementById('header-h1');
 
       if (buildingId > 0) {
         rooms = data.filter(b => b.BuildingId == buildingId)
-        header.innerHTML = rooms[0].Building;
+        headerh1.innerHTML = rooms[0].Building;
       } else {
         rooms = data.filter(b => b.Id == roomId)
-        header.innerHTML = rooms[0].Designation + ' ' + rooms[0].Building;
+        headerh1.innerHTML = rooms[0].Designation;
+        document.getElementById('header-h5').innerHTML = rooms[0].Floor + ' ' + rooms[0].Building;
       }
 
       getRoomReservation();

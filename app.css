@@ -15,6 +15,11 @@ body {
     width: 100%;
 }
 
+h1,h5{
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
 table {
     border-collapse: collapse;
     width: 100%;
