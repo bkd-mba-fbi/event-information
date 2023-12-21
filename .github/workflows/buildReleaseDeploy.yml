@@ -32,9 +32,32 @@ jobs:
           sed -i "s/dev3000/eventInfo/" dist/settings.js
           sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/settings.js
           sed -i "s/evento.ch/eventoapp.apps.be.ch/" dist/settings.js
+          cd dist && zip --recurse-paths event-information.zip *
           
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: dist
           target-folder: dist
+
+      - name: Create Release  
+        id: release
+        uses: CupOfTea696/gh-action-auto-release@v1.0.0
+        with:
+          title: "Release: $version"
+          tag: "v$semver"
+          draft: false
+          regex: "/^Release: #{semver}$/i"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Release Asset
+        id: upload-release-asset 
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+            upload_url: ${{ steps.release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+            asset_path: ./event-information.zip
+            asset_name: event-information.zip
+            asset_content_type: application/zip
