@@ -38,7 +38,8 @@ jobs:
         with:
           folder: dist
           target-folder: dist
-
+          
+        # build the zip to upload to release
       - name: Build zip 
         run: |
             cd dist && zip --recurse-paths event-information.zip *
