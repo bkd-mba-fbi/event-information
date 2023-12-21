@@ -7,7 +7,7 @@ Display events from evento api to add this to entrance of a buildung or of a roo
 
 This module can be used to display buildings. For example, building entrances to display events in this building. It is possible to set a parameter using the event color (Evento tab lesson) so that only these events are displayed. It is also possible to create a room display if the roomId parameter is called in the URL.
 
-If you are an Evento school of the Canton of Bern, you can use the module directly via the URL https://event-information.netlify.app. If not, you can download the latest release and install it on any web server. You must then configure the 3 properties in settings.js. In Evento OAuth you have to create a Public ConsumerType that has access to the Scope `Public` with the endpoint `GET /RoomReservation` on the EndpointList.
+If you are an Evento school of the Canton of Bern, you can use the module directly via the URL https://event-information.netlify.app. If not, you can download the latest release and install it on any web server. You must then configure the 3 properties in settings.js. In Evento OAuth you have to create a Public ConsumerType that has access to the Scope `Public` with the endpoint `GET /RoomReservation` on the `EndpointList`.
 
 ## Parameter
 
@@ -22,8 +22,8 @@ Mandatory parameters are `buildingId` or `roomId` and `instanceId`
 - `siteChange`: Interval to go to next site if more then 1 site in sec (default 3.5sec)
 
 E.g.
-buildingId: https://event-information.netlify.app/?instance=BsTest&buildingId=1001&refresh=60&headerColor=22947f
-roomId: https://event-information.netlify.app/?instance=BsTest&roomId=10001&refresh=60&headerColor=4a6a24
+- buildingId: https://event-information.netlify.app/?instance=BsTest&buildingId=1001&refresh=60&headerColor=22947f
+- roomId: https://event-information.netlify.app/?instance=BsTest&roomId=10001&refresh=60&headerColor=4a6a24
 
 # Auth
 
@@ -37,21 +37,21 @@ If the consumer is registered in OAuth, a new accessToken is sent to the client,
 
 ## Param buildingId
 
-Header: Rooms.Building
+Header: `Rooms.Building`
 
 Table rows:
-- Occupancies.DateTimeFrom - Occupancies.DateTimeFrom (format hh:mm)
-- Occupancies.Designation
-- Occupancies.Floor
-- Occupancies.Ressource
+- `Occupancies.DateTimeFrom - Occupancies.DateTimeFrom` (format hh:mm)
+- `Occupancies.Designation`
+- `Occupancies.Floor`
+- `Occupancies.Ressource`
 
 ## Param roomId
 
-Header: Rooms.Ressource Rooms.Building
+Header: `Rooms.Ressource Rooms.Building`
 
 Table rows:
-- Occupancies.DateTimeFrom - Occupancies.DateTimeFrom (format hh:mm)
-- Occupancies.Designation
+- `Occupancies.DateTimeFrom - Occupancies.DateTimeFrom` (format hh:mm)
+- `Occupancies.Designation`
 
 # Setup & Development
 
