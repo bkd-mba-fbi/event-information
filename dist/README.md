@@ -59,7 +59,15 @@ Table rows:
 
 For development use the dev branch and commit your changes to this. We review all changes on the dev branch an made a pull request to main after everything ist good or we find a new release must be create.
 
-Action on main branch
+## Release
+
+1. Do a pull request from dev to main.
+2. Title semantic version number (E.g. 1.1.0)
+3. Commit meesage only version number
+4. New release create by action
+5. if action finished generate auto relasee notes an save
+
+## Action on main branch
 
 1. Build app 
 2. change settings propertys for production
