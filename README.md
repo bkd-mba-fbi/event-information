@@ -75,8 +75,8 @@ For development use the dev branch and commit your changes to this. We review al
 
 1. Do a pull request from dev to main.
 2. Title semantic version number (E.g. 1.1.0)
-3. Commit meesage only version number
-4. New release create by action
+3. Commit message only version number
+4. New release created by action
 5. if action finished generate auto relasee notes an save
 <img width="239" alt="image" src="https://github.com/bkd-mba-fbi/event-information/assets/41326409/e47331ce-3065-498b-b1b6-f841d86b8500">
 
