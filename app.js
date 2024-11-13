@@ -100,23 +100,31 @@ function checkToken() {
     if (location.href.indexOf('?access_token') > 0) {
       location.replace(location.href.split('?')[0]);      
     } else {
-      
-      var setLocation = ''
-      location.href.split('&').forEach(item => {
-  
-        if(item.includes('clientId=') || item.includes('redirectUrl=')) {
-          item = '';
-        }
-        if(item.length > 0) {
-          setLocation = setLocation + item + '&';
-        }
-   
-      });
-
+      setLocation = removeParam();
       location = setLocation.substring(0, setLocation.indexOf('&access_token'));
     }
 
-  }
+  } 
+  
+}
+/**
+ * param clientId & redirectUrl remove after success login
+ */
+function removeParam(){
+  
+  var setLocation = ''
+  location.href.split('&').forEach(item => {
+
+    if(item.includes('clientId=') || item.includes('redirectUrl=')) {
+      item = '';
+    }
+    if(item.length > 0) {
+      setLocation = setLocation + item + '&';
+    }
+
+  });
+  return setLocation.substring(0,setLocation.length-1);
+
 }
 
 /**
@@ -129,7 +137,7 @@ function autoCheckForLogin() {
   }
 
   // get a new token from the OAuth server
-  let url = `${settings.authUrl}/Authorization/${instanceId}/Token?clientId=${settings.clientId}&redirectUrl=${location.href}&culture_info=${navigatorLanguage}&application_scope=Public`;
+  let url = `${settings.authUrl}/Authorization/${instanceId}/Token?clientId=${settings.clientId}&redirectUrl=${removeParam()}&culture_info=${navigatorLanguage}&application_scope=Public`;
 
   location.replace(url);
   return new Promise(() => { }); // never resolve so no error-message gets shown
