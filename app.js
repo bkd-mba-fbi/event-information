@@ -98,9 +98,22 @@ function checkToken() {
   if (accessToken !== null) {
     setAccessToken(accessToken);
     if (location.href.indexOf('?access_token') > 0) {
-      location.replace(location.href.split('?')[0]);
+      location.replace(location.href.split('?')[0]);      
     } else {
-      location.replace(location.href.substring(0, location.href.indexOf('&access_token')));
+      
+      var setLocation = ''
+      location.href.split('&').forEach(item => {
+  
+        if(item.includes('clientId=') || item.includes('redirectUrl=')) {
+          item = '';
+        }
+        if(item.length > 0) {
+          setLocation = setLocation + item + '&';
+        }
+   
+      });
+
+      location = setLocation.substring(0, setLocation.indexOf('&access_token'));
     }
 
   }
