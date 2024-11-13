@@ -55,6 +55,18 @@ Table rows:
 - `Occupancies.DateTimeFrom - Occupancies.DateTimeFrom` (format hh:mm)
 - `Occupancies.Designation`
 
+## Responsive Design
+
+font-size and padding are calculated by screen size.
+```
+font-size: calc(1.3rem + 1.1vw)
+padding: calc(0.1rem + 2vw);
+```
+if smaller than 850px: 
+```
+font-size: calc(0.8rem + 1.55vw)
+```
+
 # Branching & Releasing
 
 For development use the dev branch and commit your changes to this. We review all changes on the dev branch an made a pull request to main after everything ist good or we find a new release must be create.
@@ -63,9 +75,11 @@ For development use the dev branch and commit your changes to this. We review al
 
 1. Do a pull request from dev to main.
 2. Title semantic version number (E.g. 1.1.0)
-3. Commit meesage only version number
-4. New release create by action
+3. Commit message only version number
+4. New release created by action
 5. if action finished generate auto relasee notes an save
+<img width="239" alt="image" src="https://github.com/bkd-mba-fbi/event-information/assets/41326409/e47331ce-3065-498b-b1b6-f841d86b8500">
+
 
 ## Action on main branch
 
@@ -92,15 +106,4 @@ Start the development server:
 
 ```
 npm run dev
-```
-## Responsive Design
-
-font-size and padding are calculated by screen size.
-```
-font-size: calc(1.3rem + 1.1vw)
-padding: calc(0.1rem + 2vw);
-```
-if smaller than 850px: 
-```
-font-size: calc(0.8rem + 1.55vw)
 ```
