@@ -55,6 +55,10 @@ Table rows:
 - `Occupancies.DateTimeFrom - Occupancies.DateTimeFrom` (format hh:mm)
 - `Occupancies.Designation`
 
+## Footer
+
+Fixed bottom right last refresh datetime. 
+
 ## Responsive Design
 
 font-size and padding are calculated by screen size.
