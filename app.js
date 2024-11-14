@@ -198,6 +198,8 @@ function getRoomReservation() {
   from = from.substring(0, 10);
   to = to.substring(0, 10);
 
+  document.getElementById('dateTimestamp').innerHTML = getCurrentDateTime();
+
   getData(settings.restUrl + `/RoomReservation/Rooms/Occupancies/?filter.DateTimeFrom=${from}&filter.DateTimeTo=${to}&sort=DateTimeFrom.asc`) 
     .then((data) => {
 
@@ -240,6 +242,35 @@ function getRoomReservation() {
       });
 
     });
+}
+
+function getCurrentDateTime(){
+  
+const date = new Date();
+ 
+// Function to convert
+// single digit input
+// to two digits
+const formatData =
+    (input) => {
+        if (input > 9) {
+            return input;
+        } else return `0${input}`;
+    };
+ 
+ 
+// Data about date
+const format = {
+    dd: formatData(date.getDate()),
+    mm: formatData(date.getMonth() + 1),
+    yyyy: date.getFullYear(),
+    HH: formatData(date.getHours()),
+    MM: formatData(date.getMinutes()),
+    SS: formatData(date.getSeconds()),
+};
+
+  return `${format.dd}.${format.mm}.${format.yyyy} ${format.HH}:${format.MM}` 
+
 }
 
 
@@ -285,8 +316,8 @@ if ((buildingId === null || roomId === null) && instanceId === null) {
     });
 
   setInterval(() => {
-    getRoomReservation();
-
-  }, refresh === null ? 60000 : refresh * 60000);
+      getRoomReservation();
+      
+      }, refresh === null ? 60000 : refresh * 60000);
 
 }
