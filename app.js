@@ -300,15 +300,14 @@ var htmlLinks = 'Click on link below to display events or lessons from your buil
 
 unique.forEach(item => {
   if(!htmlLinks.includes(item.buildingId)){
-  htmlLinks = htmlLinks + `<br><a target="_blank" href=/?instance=${instanceId}&buildingId=${item.buildingId}>Building: ${item.building}</a> <br>`
+  htmlLinks = htmlLinks + `<br><a href=/?instance=${instanceId}&buildingId=${item.buildingId}>Building: ${item.building}</a> <br>`
   }
-  
-  htmlLinks = htmlLinks + `<a target="_blank" href=/?instance=${instanceId}&roomId=${item.roomId}>Room: ${item.room}</a> <br>`
-  
+
+  htmlLinks = htmlLinks + `<a href=/?instance=${instanceId}&roomId=${item.roomId}>Room: ${item.room}</a> <br>`
   
 });
 document.getElementById('dataTodisplay').style.marginTop = document.getElementById('header').getBoundingClientRect().height + 'px';
-document.getElementById('dataTodisplay').innerHTML = htmlLinks;
+document.getElementById('dataTodisplay').innerHTML = DOMPurify.sanitize(htmlLinks);
 }
 
 
@@ -353,7 +352,7 @@ if (instanceId === null) {
       }
 
       if (rooms.length === 0) {
-        headerh1.innerHTML = `param buildingId=${buildingId} or roomId=${roomId} not found.`;
+        headerh1.innerHTML = `param buildingId=${DOMPurify.sanitize(buildingId)} or roomId=${DOMPurify.sanitize(roomId)} not found.`;
         getBuildingRoomConfiguration(data);
       } else {
         getRoomReservation();
