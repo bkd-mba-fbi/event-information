@@ -1,8 +1,8 @@
-name: Build Release Deploy 🚀
+name: Build Release Deploy production 🚀
 
 on:
   push:
-    branches: [main]
+    branches: [production]
 
 jobs:
   build:
@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18]
+        node-version: [20]
 
     steps:
       - name: Checkout 🛎️
