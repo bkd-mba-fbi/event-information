@@ -1,8 +1,8 @@
-name: Build Release Deploy 🚀
+name: Build Release Deploy production 🚀
 
 on:
   push:
-    branches: [main]
+    branches: [production]
 
 jobs:
   build:
