@@ -1,6 +1,7 @@
 [![Build Deploy test 🚀](https://github.com/bkd-mba-fbi/event-information/actions/workflows/BuildDeployTest.yml/badge.svg?branch=main)](https://github.com/bkd-mba-fbi/event-information/actions/workflows/BuildDeployTest.yml)
+[![Netlify Test](https://api.netlify.com/api/v1/badges/02dcaf07-53c9-4b09-80b1-e7bcc0b8b330/deploy-status)](https://app.netlify.com/sites/event-information-test/deploys)
 [![Build Release Deploy 🚀](https://github.com/bkd-mba-fbi/event-information/actions/workflows/buildReleaseDeploy.yml/badge.svg)](https://github.com/bkd-mba-fbi/event-information/actions/workflows/buildReleaseDeploy.yml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1f04134a-e9eb-49ba-9aa4-c00d262e35a0/deploy-status)](https://app.netlify.com/sites/event-information/deploys)
+[![Netlify Prod](https://api.netlify.com/api/v1/badges/1f04134a-e9eb-49ba-9aa4-c00d262e35a0/deploy-status)](https://app.netlify.com/sites/event-information/deploys)
 # event-information
 Display events from evento api to add this to entrance of a buildung or of a room.
 
@@ -87,6 +88,12 @@ font-size: calc(0.8rem + 1.55vw)
 5. if action finished generate auto relasee notes an save
 <img width="239" alt="image" src="https://github.com/bkd-mba-fbi/event-information/assets/41326409/e47331ce-3065-498b-b1b6-f841d86b8500">
 
+## Action on main branch
+
+1. Build app 
+2. change settings propertys for test
+3. Deploy app ti gh_pages/dist folder
+4. Netlify deploy to https://event-information-test.netlify.app/
 
 ## Action on production branch
 
@@ -96,6 +103,7 @@ font-size: calc(0.8rem + 1.55vw)
 4. Deploy app ti gh_pages/dist folder 
 5. Create Release with tag COMMIT_SHORT_SHA 
 6. Upload zip file to Release
+7. Netlify deploy to https://event-information.netlify.app/
 
 # Setup & Development
 
