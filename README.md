@@ -67,13 +67,19 @@ if smaller than 850px:
 font-size: calc(0.8rem + 1.55vw)
 ```
 
-# Branching & Releasing
+# Branching, Development & Releasing
 
-For development use the dev branch and commit your changes to this. We review all changes on the dev branch an made a pull request to main after everything ist good or we find a new release must be create.
+- The active development happens in the main branch.
+- Uses temporary feature branches that are created from main and merged back into main.
+- The naming scheme for feature branches is feature/1234-short-description (with 1234 being the issue number and short-description being summary of the purpose of the branch)
+- For bugfixes the branch can can be named bug/1234-short-description.
+- Commits should be atomic (i.e. a stable, independent unit of change – the repository should still build, pass tests, and generally function if rolled back). Squash commits if necessary.
+- The developer creates a pull request for the feature branch and assigns a reviewer.
+- Feature branches should be merged fast-forward, without merge commit.
 
 ## Release
 
-1. Do a pull request from dev to main.
+1. Do a pull request from main to production.
 2. Title semantic version number (E.g. 1.1.0)
 3. Commit message only version number
 4. New release created by action
@@ -81,7 +87,7 @@ For development use the dev branch and commit your changes to this. We review al
 <img width="239" alt="image" src="https://github.com/bkd-mba-fbi/event-information/assets/41326409/e47331ce-3065-498b-b1b6-f841d86b8500">
 
 
-## Action on main branch
+## Action on production branch
 
 1. Build app 
 2. change settings propertys for production
