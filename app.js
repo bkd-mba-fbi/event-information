@@ -168,7 +168,7 @@ async function getData(url) {
   const response = await fetch(url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     headers: {
-      'CLX-Authorization': 'token_type=urn:ietf:params:oauth:token-type:jwt-bearer, access_token=' + getAccessToken()
+      'Authorization': 'Bearer ' + getAccessToken()
     }
     //body: JSON.stringify(data) // body data type must match "Content-Type" header
   });
