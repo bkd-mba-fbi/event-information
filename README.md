@@ -1,5 +1,7 @@
+[![Build Deploy test 🚀](https://github.com/bkd-mba-fbi/event-information/actions/workflows/BuildDeployTest.yml/badge.svg?branch=main)](https://github.com/bkd-mba-fbi/event-information/actions/workflows/BuildDeployTest.yml)
+[![Netlify Test](https://api.netlify.com/api/v1/badges/02dcaf07-53c9-4b09-80b1-e7bcc0b8b330/deploy-status)](https://app.netlify.com/sites/event-information-test/deploys)
 [![Build Release Deploy 🚀](https://github.com/bkd-mba-fbi/event-information/actions/workflows/buildReleaseDeploy.yml/badge.svg)](https://github.com/bkd-mba-fbi/event-information/actions/workflows/buildReleaseDeploy.yml)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1f04134a-e9eb-49ba-9aa4-c00d262e35a0/deploy-status)](https://app.netlify.com/sites/event-information/deploys)
+[![Netlify Prod](https://api.netlify.com/api/v1/badges/1f04134a-e9eb-49ba-9aa4-c00d262e35a0/deploy-status)](https://app.netlify.com/sites/event-information/deploys)
 # event-information
 Display events from evento api to add this to entrance of a buildung or of a room.
 
@@ -13,7 +15,9 @@ If not, you can download the [latest release](https://github.com/bkd-mba-fbi/eve
 
 ## Parameter
 
-Mandatory parameters are `buildingId` or `roomId` and `instanceId`
+Mandatory parameter are `instanceId` 
+
+if no `buildingId` or `roomId` param ist set the app will display a link list with every building and room for this instance > https://event-information-test.netlify.app/?instance=BsTest
 
 ### Options
 - `refresh`: to get new occupancies from restApi in min (default 1min)
@@ -67,21 +71,33 @@ if smaller than 850px:
 font-size: calc(0.8rem + 1.55vw)
 ```
 
-# Branching & Releasing
+# Branching, Development & Releasing
 
-For development use the dev branch and commit your changes to this. We review all changes on the dev branch an made a pull request to main after everything ist good or we find a new release must be create.
+- The active development happens in the main branch.
+- Uses temporary feature branches that are created from main and merged back into main.
+- The naming scheme for feature branches is feature/1234-short-description (with 1234 being the issue number and short-description being summary of the purpose of the branch)
+- For bugfixes the branch can can be named bug/1234-short-description.
+- Commits should be atomic (i.e. a stable, independent unit of change – the repository should still build, pass tests, and generally function if rolled back). Squash commits if necessary.
+- The developer creates a pull request for the feature branch and assigns a reviewer.
+- Feature branches should be merged fast-forward, without merge commit.
 
 ## Release
 
-1. Do a pull request from dev to main.
+1. Do a pull request from main to production.
 2. Title semantic version number (E.g. 1.1.0)
 3. Commit message only version number
 4. New release created by action
 5. if action finished generate auto relasee notes an save
 <img width="239" alt="image" src="https://github.com/bkd-mba-fbi/event-information/assets/41326409/e47331ce-3065-498b-b1b6-f841d86b8500">
 
-
 ## Action on main branch
+
+1. Build app 
+2. change settings propertys for test
+3. Deploy app ti gh_pages/dist folder
+4. Netlify deploy to https://event-information-test.netlify.app/
+
+## Action on production branch
 
 1. Build app 
 2. change settings propertys for production
@@ -89,6 +105,7 @@ For development use the dev branch and commit your changes to this. We review al
 4. Deploy app ti gh_pages/dist folder 
 5. Create Release with tag COMMIT_SHORT_SHA 
 6. Upload zip file to Release
+7. Netlify deploy to https://event-information.netlify.app/
 
 # Setup & Development
 
