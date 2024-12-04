@@ -168,9 +168,14 @@ async function getData(url) {
   const response = await fetch(url, {
     method: 'GET', // *GET, POST, PUT, DELETE, etc.
     headers: {
-      'CLX-Authorization': 'token_type=urn:ietf:params:oauth:token-type:jwt-bearer, access_token=' + getAccessToken()
+      'Authorization': 'Bearer ' + getAccessToken()
     }
     //body: JSON.stringify(data) // body data type must match "Content-Type" header
+  }).catch((error) => {
+     document.getElementById('header-h5').innerHTML = `${getCurrentDateTime()} GET ${url} >> ${error.message}`;
+    setTimeout(() => {
+      location.reload();
+    },3000)
   });
   return response.json(); // parses JSON response into native JavaScript objects
 }
@@ -244,6 +249,10 @@ function getRoomReservation() {
     });
 }
 
+/**
+ * 
+ * @returns Current datetime format dd.mm.yyyy HH:MM
+ */
 function getCurrentDateTime(){
   
 const date = new Date();
@@ -273,6 +282,34 @@ const format = {
 
 }
 
+/**
+ * Add in html elementId dataTodisplay links for every available buildungs an rooms.
+ * @param {*} data response from /RoomReservation/Rooms/
+ */
+function getBuildingRoomConfiguration(data){
+  data.sort((a, b) => a.BuildingId - b.BuildingId)
+  const unique = data.reduce((acc, obj) => {
+    if (!acc.includes(obj.BuildingId && !acc.includes(obj.Id))) {
+        acc.push({buildingId: obj.BuildingId, building: obj.Building, roomId: obj.Id, room: obj.Designation});
+    }
+    return acc;
+}, []);
+
+//console.log(unique); 
+var htmlLinks = 'Click on link below to display events or lessons from your building or room. <br>';
+
+unique.forEach(item => {
+  if(!htmlLinks.includes(item.buildingId)){
+  htmlLinks = htmlLinks + `<br><a href=/?instance=${instanceId}&buildingId=${item.buildingId}>Building: ${item.building}</a> <br>`
+  }
+
+  htmlLinks = htmlLinks + `<a href=/?instance=${instanceId}&roomId=${item.roomId}>Room: ${item.room}</a> <br>`
+  
+});
+document.getElementById('dataTodisplay').style.marginTop = document.getElementById('header').getBoundingClientRect().height + 'px';
+document.getElementById('dataTodisplay').innerHTML = DOMPurify.sanitize(htmlLinks);
+}
+
 
 /**
  * Start Application
@@ -287,8 +324,8 @@ const format = {
  * 8. scroll()
  * 9. refresh getRoomReservation() by param refresh if set or every 60sec
  */
-if ((buildingId === null || roomId === null) && instanceId === null) {
-  window.alert('Param instanceId and buildingId or roomId must be set: ' + location.host + '?instance={id}&buildingId={id} to url');
+if (instanceId === null) {
+  window.alert('Param instanceId must be set: ' + location.host + '?instance={id} to url');
 } else {
 
   checkToken();
@@ -303,16 +340,25 @@ if ((buildingId === null || roomId === null) && instanceId === null) {
 
       if (buildingId > 0) {
         rooms = data.filter(b => b.BuildingId == buildingId)
-        headerh1.innerHTML = rooms[0].Building;
+        if(rooms.length > 0) {
+           headerh1.innerHTML = rooms[0].Building;
+        }
       } else {
         rooms = data.filter(b => b.Id == roomId)
-        headerh1.innerHTML = rooms[0].Designation;
-        document.getElementById('header-h5').innerHTML = rooms[0].Floor + ' ' + rooms[0].Building;
+        if(rooms.length > 0) {
+          headerh1.innerHTML = rooms[0].Designation;
+          document.getElementById('header-h5').innerHTML = rooms[0].Floor + ' ' + rooms[0].Building;
+        }
       }
 
-      getRoomReservation();
-      scroll();
-
+      if (rooms.length === 0) {
+        headerh1.innerHTML = `param buildingId=${DOMPurify.sanitize(buildingId)} or roomId=${DOMPurify.sanitize(roomId)} not found.`;
+        getBuildingRoomConfiguration(data);
+      } else {
+        getRoomReservation();
+        scroll();
+      }
+        
     });
 
   setInterval(() => {
