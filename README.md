@@ -15,7 +15,9 @@ If not, you can download the [latest release](https://github.com/bkd-mba-fbi/eve
 
 ## Parameter
 
-Mandatory parameters are `buildingId` or `roomId` and `instanceId`
+Mandatory parameter are `instanceId` 
+
+if no `buildingId` or `roomId` param ist set the app will display a link list with every building and room for this instance > https://event-information-test.netlify.app/?instance=BsTest
 
 ### Options
 - `refresh`: to get new occupancies from restApi in min (default 1min)
