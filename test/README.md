@@ -15,7 +15,7 @@ If not, you can download the [latest release](https://github.com/bkd-mba-fbi/eve
 
 ## Parameter
 
-Mandatory parameter are `instanceId` 
+Mandatory parameter are `instance`. If instance param not define. The modul will get lastUrl form sessionStorage.lastUrl and refresh site.
 
 if no `buildingId` or `roomId` param ist set the app will display a link list with every building and room for this instance > https://event-information-test.netlify.app/?instance=BsTest
 
