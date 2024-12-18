@@ -348,7 +348,7 @@ if (instanceId === null) {
     if(url === undefined || url === null) {
       setTimeout(() => {
         const paramError = document.createElement('div');
-        paramError.innerText = DOMPurify.sanitize('Param instanceId and buildingId or roomId must be set: ' + location.host + '?instance={id}&buildingId={id} to url');
+        paramError.innerText = DOMPurify.sanitize('Param instance must be set: ' + location.host + '?instance={id} to url');
         paramError.classList.add('param-error')
         document.body.appendChild(paramError);
       }
