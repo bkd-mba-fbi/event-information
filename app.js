@@ -1,4 +1,5 @@
-const evtToken = 'evtToken'
+const evtToken = 'evtToken';
+const lastUrl = 'lastUrl';
 var settings = window.eventInformation.settings;
 // browser-language
 let navigatorLanguage = navigator.language.split('-')[0] === 'fr' ? 'fr-CH' : 'de-CH';
@@ -34,6 +35,23 @@ function getAccessToken() {
   let item = sessionStorage.getItem(evtToken);
 
   return item !== undefined ? item : null;
+}
+
+/**
+ * get sessionStorage lastUrl
+ */
+function getLastUrl(){
+  let item = sessionStorage.getItem(lastUrl);
+
+  return item !== undefined ? item : null;
+}
+
+/**
+ * set sessionStorage lastUrl
+ * @param {object} value the value to store
+ */
+function setLastUrl(value) {
+  sessionStorage.setItem(lastUrl, value);
 }
 
 /**
@@ -325,8 +343,23 @@ document.getElementById('dataTodisplay').innerHTML = DOMPurify.sanitize(htmlLink
  * 9. refresh getRoomReservation() by param refresh if set or every 60sec
  */
 if (instanceId === null) {
-  window.alert('Param instanceId must be set: ' + location.host + '?instance={id} to url');
+
+    const url = getLastUrl();
+    if(url === undefined || url === null) {
+      setTimeout(() => {
+        const paramError = document.createElement('div');
+        paramError.innerText = DOMPurify.sanitize('Param instanceId and buildingId or roomId must be set: ' + location.host + '?instance={id}&buildingId={id} to url');
+        paramError.classList.add('param-error')
+        document.body.appendChild(paramError);
+      }
+      ,200)
+    } else {
+      location = url;
+    }
+
 } else {
+  
+  setLastUrl(location.href);
 
   checkToken();
   autoCheckForLogin();
