@@ -69,6 +69,17 @@ table {
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
   }
 
+  .param-error {
+    top: 20px;
+    position: absolute;
+    margin: 10px;
+    padding: 10px;
+    z-index: 1000;
+    color: white;
+    background: #ef4b4be8;
+    border-radius: 10px;
+  }
+
 footer {
     position: fixed;
     bottom: 0px;
