@@ -1,5 +1,6 @@
 const evtToken = 'evtToken';
 const lastUrl = 'lastUrl';
+const roomsfilterd = 'roomsfilterd';
 var settings = window.eventInformation.settings;
 // browser-language
 let navigatorLanguage = navigator.language.split('-')[0] === 'fr' ? 'fr-CH' : 'de-CH';
