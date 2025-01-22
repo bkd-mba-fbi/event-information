@@ -1,6 +1,5 @@
 const evtToken = 'evtToken';
 const lastUrl = 'lastUrl';
-const roomsfilterd =  'roomsfilterd';
 var settings = window.eventInformation.settings;
 // browser-language
 let navigatorLanguage = navigator.language.split('-')[0] === 'fr' ? 'fr-CH' : 'de-CH';
@@ -235,9 +234,7 @@ function getRoomReservation() {
       });
 
       data.forEach(element => {
-
-        var displayColor = color === null ? element.DisplayColor : '#' + color;
-        console.log(displayColor);
+        displayColor = color === null ? element.DisplayColor : '#' + color;
         var roomsFiltered = rooms.filter(r => r.Id === element.ResourceId);
         if (roomsFiltered.length > 0 && displayColor === element.DisplayColor) {
 
@@ -373,7 +370,7 @@ if (instanceId === null) {
       const headerh1 = document.getElementById('header-h1');
 
       if (buildingId > 0) {
-        rooms = data.filter(b => b.BuildingId == buildingId)
+        rooms = data.filter(b => b.BuildingId == buildingId);
         if(rooms.length > 0) {
            headerh1.innerHTML = rooms[0].Building;
         }
