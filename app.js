@@ -222,8 +222,8 @@ function getRoomReservation() {
   to = to.substring(0, 10);
 
   document.getElementById('dateTimestamp').innerHTML = getCurrentDateTime();
-
-  getData(settings.restUrl + `/RoomReservation/Rooms/Occupancies/?filter.DateTimeFrom=${from}&filter.DateTimeTo=${to}&sort=DateTimeFrom.asc`) 
+  var getOccupancies = encodeURI(settings.restUrl + `/RoomReservation/Rooms/Occupancies/?filter.DateTimeFrom=${from}&filter.DateTimeTo=${to}&filter.ResourceId=;${sessionStorage.getItem(roomsfilterd)}&sort=DateTimeFrom.asc`)
+  getData(getOccupancies) 
     .then((data) => {
 
       var table = document.getElementById('events');
@@ -234,9 +234,7 @@ function getRoomReservation() {
       });
 
       data.forEach(element => {
-
-        var displayColor = color === null ? element.DisplayColor : '#' + color;
-        console.log(displayColor);
+        displayColor = color === null ? element.DisplayColor : '#' + color;
         var roomsFiltered = rooms.filter(r => r.Id === element.ResourceId);
         if (roomsFiltered.length > 0 && displayColor === element.DisplayColor) {
 
@@ -372,7 +370,7 @@ if (instanceId === null) {
       const headerh1 = document.getElementById('header-h1');
 
       if (buildingId > 0) {
-        rooms = data.filter(b => b.BuildingId == buildingId)
+        rooms = data.filter(b => b.BuildingId == buildingId);
         if(rooms.length > 0) {
            headerh1.innerHTML = rooms[0].Building;
         }
@@ -383,6 +381,8 @@ if (instanceId === null) {
           document.getElementById('header-h5').innerHTML = rooms[0].Floor + ' ' + rooms[0].Building;
         }
       }
+      var roomsArray = rooms.map(function(rooms) {return rooms['Id']});
+      sessionStorage.setItem(roomsfilterd,roomsArray.toString().replaceAll(',',';'));
 
       if (rooms.length === 0) {
         headerh1.innerHTML = `param buildingId=${DOMPurify.sanitize(buildingId)} or roomId=${DOMPurify.sanitize(roomId)} not found.`;
