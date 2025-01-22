@@ -1,5 +1,6 @@
 const evtToken = 'evtToken';
 const lastUrl = 'lastUrl';
+const roomsfilterd =  'roomsfilterd';
 var settings = window.eventInformation.settings;
 // browser-language
 let navigatorLanguage = navigator.language.split('-')[0] === 'fr' ? 'fr-CH' : 'de-CH';
@@ -222,8 +223,9 @@ function getRoomReservation() {
   to = to.substring(0, 10);
 
   document.getElementById('dateTimestamp').innerHTML = getCurrentDateTime();
-
-  getData(settings.restUrl + `/RoomReservation/Rooms/Occupancies/?filter.DateTimeFrom=${from}&filter.DateTimeTo=${to}&sort=DateTimeFrom.asc`) 
+  var displayColor = color === null ? element.DisplayColor : '#' + color;
+  var getOccupancies = encodeURI(settings.restUrl + `/RoomReservation/Rooms/Occupancies/?filter.DateTimeFrom=${from}&filter.DateTimeTo=${to}&filter.ResourceId=;${sessionStorage.getItem(roomsfilterd)}&filter.DisplayColor=${displayColor.replace('#','')}&sort=DateTimeFrom.asc`)
+  getData(getOccupancies) 
     .then((data) => {
 
       var table = document.getElementById('events');
@@ -235,8 +237,6 @@ function getRoomReservation() {
 
       data.forEach(element => {
 
-        var displayColor = color === null ? element.DisplayColor : '#' + color;
-        console.log(displayColor);
         var roomsFiltered = rooms.filter(r => r.Id === element.ResourceId);
         if (roomsFiltered.length > 0 && displayColor === element.DisplayColor) {
 
@@ -372,7 +372,9 @@ if (instanceId === null) {
       const headerh1 = document.getElementById('header-h1');
 
       if (buildingId > 0) {
-        rooms = data.filter(b => b.BuildingId == buildingId)
+        rooms = data.filter(b => b.BuildingId == buildingId);
+        var roomsArray = rooms.map(function(rooms) {return rooms['Id']});
+        sessionStorage.setItem(roomsfilterd,roomsArray.toString().replaceAll(',',';'));
         if(rooms.length > 0) {
            headerh1.innerHTML = rooms[0].Building;
         }
