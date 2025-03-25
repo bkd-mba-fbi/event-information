@@ -223,6 +223,10 @@ function getRoomReservation() {
   to = to.substring(0, 10);
 
   document.getElementById('dateTimestamp').innerHTML = getCurrentDateTime();
+  setInterval(() => {
+    document.getElementById('dateTimestamp').innerHTML = getCurrentDateTime();
+  }, 60000)
+ 
   var getOccupancies = encodeURI(settings.restUrl + `/RoomReservation/Rooms/Occupancies/?filter.DateTimeFrom=${from}&filter.DateTimeTo=${to}&filter.ResourceId=;${sessionStorage.getItem(roomsfilterd)}&sort=DateTimeFrom.asc`)
   getData(getOccupancies) 
     .then((data) => {
@@ -398,6 +402,6 @@ if (instanceId === null) {
   setInterval(() => {
       getRoomReservation();
       
-      }, refresh === null ? 60000 : refresh * 60000);
+      }, refresh === null ? 5 * 60 * 1000 : (refresh * 60 * 1000) + (5 * 60 * 1000));
 
 }
