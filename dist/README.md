@@ -20,7 +20,7 @@ Mandatory parameter are `instance`. If instance param not define. The modul will
 if no `buildingId` or `roomId` param ist set the app will display a link list with every building and room for this instance > https://event-information-test.netlify.app/?instance=BsTest
 
 ### Options
-- `refresh`: to get new occupancies from restApi in min (default 1min)
+- `refresh`: to get new occupancies from restApi in min (default 5min) (time to refresh = param.refresh + 5min)
 - `color`: filter to event color would you like to display on the screen (HEX without # in param) 
 
   ![image](https://github.com/bkd-mba-fbi/event-information/assets/41326409/6a88823c-82b8-4f0a-9c15-8813d5e6bfb1)
